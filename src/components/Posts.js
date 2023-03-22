@@ -11,7 +11,7 @@ function Posts() {
     const [paginatorData, setPaginatorData] = useState({});
 
     const fetchPost = (post_id) => {
-        const url = `http://localhost:8000/api/posts/${post_id}/`;
+        const url = `https://silent-memorial.fly.dev/api/posts/${post_id}/`;
         console.log('post_id:', post_id, ', url:', url);
         axios.get(url).then(response => {
             console.log(response);
@@ -25,7 +25,7 @@ function Posts() {
 
     const fetchPostList = (page) => {
         if (!page) page = 1;
-        const url = `http://localhost:8000/api/posts/?page=${page}`;
+        const url = `https://silent-memorial.fly.dev/api/posts/?page=${page}`;
         console.log('page:', page, ', url:', url);
         axios.get(url).then(response => {
             console.log(response);
