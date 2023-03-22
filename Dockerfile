@@ -1,13 +1,15 @@
-FROM buildpack-deps:bullseye
+FROM node:18-alpine
 
-ENV NODE_VERSION 18.15.0
-
-WORKDIR /frontend
+WORKDIR /app
 
 COPY . .
 
-RUN npm install
+RUN npm ci 
+
+RUN npm run build
+
+ENV NODE_ENV production
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD [ "npx", "serve", "build" ]
