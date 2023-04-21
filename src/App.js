@@ -53,7 +53,7 @@ function App() {
     return (
         <>
             <PostDataProvider>
-                <HashRouter router={router} />
+                <RouterProvider router={router} />
             </PostDataProvider>
             <Copyright />
         </>
