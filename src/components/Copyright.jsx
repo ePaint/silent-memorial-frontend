@@ -1,7 +1,7 @@
 function Copyright() {
     return (
         <div id="copyright">
-            <ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+            <ul><li>&copy; All rights reserved 2023</li></ul>
         </div>
     )
 }
