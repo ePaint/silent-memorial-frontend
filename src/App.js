@@ -3,7 +3,6 @@ import './App.css';
 import CustomModal from './components/Modal';
 import Intro from './components/Intro';
 import NavBar from './components/NavBar';
-import Post from './components/Post';
 import PostDetailed from './components/PostDetailed';
 import PostList from './components/PostList';
 import Contact from './components/Contact';
