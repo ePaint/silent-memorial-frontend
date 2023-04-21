@@ -1,25 +1,62 @@
-import axios from 'axios';
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import CustomModal from './components/Modal';
 import Intro from './components/Intro';
-import Posts from './components/Posts';
-import Footer from './components/Footer';
+import NavBar from './components/NavBar';
+import Post from './components/Post';
+import PostDetailed from './components/PostDetailed';
+import PostList from './components/PostList';
+import Contact from './components/Contact';
 import Copyright from './components/Copyright';
-import overlay from './images/overlay.png';
-import bg from './images/bg.jpg';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { PostDataProvider } from './providers/PostDataProvider';
+
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <>
+            {/* <Intro /> */}
+            <NavBar />
+            <PostList />
+        </>,
+        errorElement: <>
+            <NavBar />
+            <h2>Error</h2>
+        </>,
+    },
+    {
+        path: '/latest',
+        element: <>
+            <NavBar />
+            <PostList />
+        </>
+    },
+    {
+        path: '/posts/:post_id',
+        element: <>
+            <NavBar />
+            <PostDetailed />
+        </>,
+    },
+    {
+        path: '/contact',
+        element: <>
+            <NavBar />
+            <Contact />
+        </>,
+    }
+]);
 
 
 function App() {
-    const style = { backgroundImage: `url(${overlay}), linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${bg})` };
-
     return (
-        <div id="wrapper" className="fade-in" style={style}>
-            <Intro />
-            <Posts />
-            <Footer />
+        <>
+            <PostDataProvider>
+                <RouterProvider router={router} />
+            </PostDataProvider>
             <Copyright />
-        </div>
+        </>
     );
 }
 

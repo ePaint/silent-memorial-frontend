@@ -1,4 +1,4 @@
-function Footer() {
+function Contact() {
     return (
         <footer id="footer">
           <section>
@@ -50,4 +50,4 @@ function Footer() {
     )
 }
 
-export default Footer
+export default Contact
