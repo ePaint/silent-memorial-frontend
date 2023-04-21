@@ -8,11 +8,11 @@ import PostDetailed from './components/PostDetailed';
 import PostList from './components/PostList';
 import Contact from './components/Contact';
 import Copyright from './components/Copyright';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet, HashRouter, createHashRouter } from 'react-router-dom';
 import { PostDataProvider } from './providers/PostDataProvider';
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: '/',
         element: <>
@@ -53,7 +53,7 @@ function App() {
     return (
         <>
             <PostDataProvider>
-                <RouterProvider router={router} basename='app'/>
+                <HashRouter router={router} />
             </PostDataProvider>
             <Copyright />
         </>
