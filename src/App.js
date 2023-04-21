@@ -53,7 +53,7 @@ function App() {
     return (
         <>
             <PostDataProvider>
-                <RouterProvider router={router} />
+                <RouterProvider router={router} basename='app'/>
             </PostDataProvider>
             <Copyright />
         </>
