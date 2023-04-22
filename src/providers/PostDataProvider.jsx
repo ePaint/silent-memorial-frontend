@@ -17,6 +17,7 @@ export function PostDataProvider(props) {
     const [postList, setPostList] = useState([]);
     const [activePostList, setActivePostList] = useState([]);
     const [paginator, setPaginator] = useState({current_page: 1});
+    const [isLoading, setIsLoading] = useState(false);
 
     const updatePostList = (inputPostList) => {
         inputPostList.forEach(newPost => {
@@ -42,6 +43,8 @@ export function PostDataProvider(props) {
             ...paginator,
             current_page: data.current_page,
             total_pages: data?.total_pages ? data?.total_pages : paginator.total_pages,
+            page_prev: data?.page_prev,
+            page_next: data?.page_next,
         };
 
         paginatorData[data.current_page] = {
@@ -61,24 +64,29 @@ export function PostDataProvider(props) {
         console.log('paginator:', paginator);        
         const url = `https://silent-memorial.fly.dev/api/posts/?page=${page}`;
         console.log('Downloading post list. page:', page, ', url:', url);
+        setIsLoading(true);
         axios.get(url).then(response => {
-            console.log(response);
+            console.log('response:', response);
             updateCache(response.data);
+            setIsLoading(false);
         });
     }
 
     const fetchPost = (post_id) => {
         const url = `https://silent-memorial.fly.dev/api/posts/${post_id}/`;
         console.log('Downloading post. post_id:', post_id, ', url:', url);
+        setIsLoading(true);
         axios.get(url).then(response => {
-            console.log(response);
+            console.log('response:', response);
             const post = response.data;
             updatePostList([post]);
+            setIsLoading(false);
         });
     }
 
     const getPageData = (page) => {
         console.log('page (' + page + ') in paginator:', page in paginator, paginator);
+        setPaginator({...paginator, current_page: page});
         if (!(page in paginator)) {
             fetchPostList(page);
         } else {
@@ -88,7 +96,9 @@ export function PostDataProvider(props) {
             console.log('loadedPostList:', loadedPostList);
             updateCache({
                 current_page: page,
-                results: loadedPostList
+                page_prev: page > 1 ? page - 1 : null,
+                page_next: page < paginator.total_pages ? page + 1 : null,
+                results: loadedPostList,
             });
         }
     }
@@ -104,7 +114,7 @@ export function PostDataProvider(props) {
     }, [])
 
     return (
-        <PostDataContext.Provider value={{postList: postList, activePostList: activePostList, paginator: paginator}}>
+        <PostDataContext.Provider value={{postList: postList, activePostList: activePostList, paginator: paginator, isLoading: isLoading}}>
             <PostDataLoadContext.Provider value={{getPageData: getPageData, getPostData: getPostData}}>
                 {props.children}
             </PostDataLoadContext.Provider>

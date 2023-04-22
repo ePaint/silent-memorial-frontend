@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { useSessionDataContext, useSessionDataSetContext } from "../providers/SessionDataProvider";
 
-function NavBar() {
+function LoginModal() {
     const [user, setUser] = useState({});
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -27,12 +26,11 @@ function NavBar() {
                 <Link to="/" className="logo">Silent Memorial</Link>
             </header>
             
-            
             <nav id="nav">
                 <ul className="links">
                     <li className="active"><Link to="/">Latest Memorials</Link></li>
                     <li><Link to="/search">Search Memorials</Link></li>
-                    <li className="login"><Link onClick={toggleAuthenticated}>Log In: {String(isAuthenticated)}</Link></li>
+                    <li className="login"><Link onClick={toggleAuthenticated}>Log In</Link></li>
                 </ul>
                 
                 <ul className="icons">
@@ -46,4 +44,4 @@ function NavBar() {
     );
 }
 
-export default NavBar
+export default LoginModal

@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Copyright from './components/Copyright';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { PostDataProvider } from './providers/PostDataProvider';
+import { SessionDataProvider } from './providers/SessionDataProvider';
 
 
 const router = createBrowserRouter([
@@ -51,9 +52,11 @@ const router = createBrowserRouter([
 function App() {
     return (
         <>
-            <PostDataProvider>
-                <RouterProvider router={router} />
-            </PostDataProvider>
+            <SessionDataProvider>
+                <PostDataProvider>
+                    <RouterProvider router={router} />
+                </PostDataProvider>
+            </SessionDataProvider>
             <Copyright />
         </>
     );

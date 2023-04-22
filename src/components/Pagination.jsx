@@ -5,26 +5,41 @@ import './Pagination.css';
 
 function Pagination() {
     const [pageNumber, setPageNumber] = useState(0);
+    const [prevPageNumber, setPrevPageNumber] = useState(null);
+    const [nextPageNumber, setNextPageNumber] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const data = usePostDataContext();
     const getData = usePostDataLoadContext();
 
     const maxPagesQuickAccess = 3;
 
     const updatePage = (page) => {
-        setPageNumber(page);
-        getData.getPageData(page);
+        if (!isLoading) {
+            // if (!(page in data.paginator)) setIsLoading(true);
+            getData.getPageData(page);
+        }
     }
+
+    useEffect(() => {
+        console.log('data.isLoading:', data.isLoading);
+        setIsLoading(data.isLoading);
+    }, [data.isLoading]);
 
     useEffect(() => {
         console.log('data.paginator:', data.paginator);
         setPageNumber(data.paginator.current_page);
-    }, [data])
+        setPrevPageNumber(data.paginator.page_prev);
+        setNextPageNumber(data.paginator.page_next);
+    }, [data.paginator]);
 
     const getPage = ({ page=1, decorate=false, activePage=null, baseClass='page', label=null } = {}) => {
         let className = baseClass;
 
         if (decorate) {
-            if (page === activePage) className += ' active';
+            if (page === activePage) {
+                className += ' active';
+                if (isLoading) className += ' loading';
+            }
             if (Math.abs(page - activePage) > 1) className += ' tail';
         }
 
@@ -33,7 +48,7 @@ function Pagination() {
         return (
             <Link
                 onClick={() => updatePage(page)} key={'page-' + page}
-                className={className}>
+                className={className} >
                 {label}
             </Link>
         );
@@ -44,11 +59,21 @@ function Pagination() {
     }
 
     const getPrev = () => {
-        if (data.paginator[pageNumber]?.page_prev) return (getPage({ page: pageNumber - 1, baseClass: 'previous', label: 'Prev' }));
+        console.log(prevPageNumber);
+        if (prevPageNumber) {
+            return getPage({ page: pageNumber - 1, baseClass: 'previous', label: 'Prev' });
+        } else {
+            return getPage({ page: pageNumber - 1, baseClass: 'previous disabled', label: 'Prev' });
+        }
     }
 
     const getNext = () => {
-        if (data.paginator[pageNumber]?.page_next) return (getPage({ page: pageNumber + 1, baseClass: 'next', label: 'Next' }));
+        console.log(nextPageNumber);
+        if (nextPageNumber) {
+            return getPage({ page: pageNumber + 1, baseClass: 'next', label: 'Next' });
+        } else {
+            return getPage({ page: pageNumber + 1, baseClass: 'next disabled', label: 'Next' });
+        }
     }
 
     const getPages = () => {
