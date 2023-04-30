@@ -53,7 +53,7 @@
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
-    text-transform: none !important;
+    text-transform: none;
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
 }
@@ -61,7 +61,7 @@
 .pagination .next:before,
 .pagination .previous:before {
     display: inline-block;
-    color: inherit !important;
+    color: inherit;
     line-height: inherit;
 }
 
@@ -105,11 +105,11 @@
 }
 
 .pagination a {
-    color: #212931 !important;
+    color: #212931;
 }
 
 .pagination a:hover {
-    color: #18bfef !important;
+    color: #18bfef;
     border-color: #18bfef;
     z-index: 1;
 }
@@ -123,12 +123,6 @@
     background-color: #eeeeee;
 }
 
-.pagination a.loading {
-    /* color: #18bfef !important; */
-    background-image: url('./Spinner-1s-200px-Transparent.gif');
-    background-size: 100%;
-}
-
 .pagination span {
     color: #eeeeee;
 }
@@ -137,5 +131,5 @@
     pointer-events: none;
     cursor: default;
     background-color: #f5f5f5;
-    color: #777676 !important;
+    color: #777676;
 }

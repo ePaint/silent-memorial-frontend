@@ -1,12 +1,10 @@
 import React from 'react';
-import './App.css';
-import CustomModal from './components/Modal';
-import Intro from './components/Intro';
-import NavBar from './components/NavBar';
-import PostDetailed from './components/PostDetailed';
-import PostList from './components/PostList';
-import Contact from './components/Contact';
-import Copyright from './components/Copyright';
+import Intro from './components/Intro/Intro';
+import NavBar from './components/NavBar/NavBar';
+import PostDetailed from './components/PostDetailed/PostDetailed';
+import PostCardList from './components/PostCardList/PostCardList';
+import Contact from './components/Contact/Contact';
+import Copyright from './components/Copyright/Copyright';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { PostDataProvider } from './providers/PostDataProvider';
 import { SessionDataProvider } from './providers/SessionDataProvider';
@@ -16,9 +14,9 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <>
-            {/* <Intro /> */}
+            <Intro />
             <NavBar />
-            <PostList />
+            {/* <PostList /> */}
         </>,
         errorElement: <>
             <NavBar />
@@ -29,7 +27,7 @@ const router = createBrowserRouter([
         path: '/latest',
         element: <>
             <NavBar />
-            <PostList />
+            <PostCardList />
         </>
     },
     {

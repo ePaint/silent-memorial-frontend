@@ -44,7 +44,7 @@
 
 			&:before {
 				display: inline-block;
-				color: inherit !important;
+				color: inherit;
 				line-height: inherit;
 			}
 		}
@@ -84,10 +84,10 @@
 			}
 
 			a {
-				color: _palette($p, fg-bold) !important;
+				color: _palette($p, fg-bold);
 
 				&:hover {
-					color: _palette($p, accent) !important;
+					color: _palette($p, accent);
 					border-color: _palette($p, accent);
 					z-index: 1;
 

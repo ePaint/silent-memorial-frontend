@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './PostList.css';
-import Post from './Post';
-import Pagination from './Pagination';
-import Loading from './Loading';
-import { usePostDataContext, usePostDataLoadContext } from '../providers/PostDataProvider';
+import './PostCardList.css';
+import Post from '../PostCard/PostCard';
+import Pagination from '../Pagination/Pagination';
+import Loading from '../Loading/Loading';
+import { usePostDataContext, usePostDataLoadContext } from '../../providers/PostDataProvider';
 
-function PostList() {
+function PostCardList() {
     const [postList, setPostList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -39,4 +39,4 @@ function PostList() {
     )
 }
 
-export default PostList
+export default PostCardList

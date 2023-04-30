@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { usePostDataContext, usePostDataLoadContext } from '../providers/PostDataProvider';
+import { usePostDataContext, usePostDataLoadContext } from '../../providers/PostDataProvider';
 import './Pagination.css';
 
 function Pagination() {

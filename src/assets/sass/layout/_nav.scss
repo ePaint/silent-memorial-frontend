@@ -53,7 +53,7 @@
 						padding: 0 2rem;
 
 						&:hover {
-							color: inherit !important;
+							color: inherit;
 							background-color: transparentize(_palette(invert, fg), 0.9);
 						}
 					}
@@ -65,7 +65,7 @@
 							color: _palette(invert, bg);
 
 							&:hover {
-								color: _palette(invert, accent) !important;
+								color: _palette(invert, accent);
 							}
 						}
 					}

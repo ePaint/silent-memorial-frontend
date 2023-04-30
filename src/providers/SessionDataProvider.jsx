@@ -16,10 +16,11 @@ export function useSessionDataSetContext() {
 export function SessionDataProvider(props) {
     const [user, setUser] = useState({});
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
 
     return (
-        <SessionDataContext.Provider value={{user: user, isAuthenticated: isAuthenticated}}>
-            <SessionDataSetContext.Provider value={{setUser: setUser, setIsAuthenticated: setIsAuthenticated}}>
+        <SessionDataContext.Provider value={{user: user, isAuthenticated: isAuthenticated, showLoginModal: showLoginModal}}>
+            <SessionDataSetContext.Provider value={{setUser: setUser, setIsAuthenticated: setIsAuthenticated, setShowLoginModal: setShowLoginModal}}>
                 {props.children}
             </SessionDataSetContext.Provider>
         </SessionDataContext.Provider>

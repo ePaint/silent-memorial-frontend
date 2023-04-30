@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 
-function Post({ loaded_post=null, index=1, featured=false } = {}) {
+function PostCard({ loaded_post=null, index=1, featured=false } = {}) {
     const [post, setPost] = useState(loaded_post);
 
     // const fetchPost = (post_id) => {
@@ -31,7 +31,7 @@ function Post({ loaded_post=null, index=1, featured=false } = {}) {
                         <p className="preview-content" dangerouslySetInnerHTML={{__html: post?.featured_content}}></p>
                     </header>
                     
-                    <Link to={post_url} className="image main"><img src={require("../images/pic0" + index + "-alt.jpg")} alt="" /></Link>
+                    <Link to={post_url} className="image main"><img src={require("/src/images/pic0" + index + "-alt.jpg")} alt="" /></Link>
                     <ul className="actions special">
                         <li><Link to={post_url} className="button large">Full Story</Link></li>
                     </ul>
@@ -45,7 +45,7 @@ function Post({ loaded_post=null, index=1, featured=false } = {}) {
                         <h2><Link to={post_url}>{post?.title}</Link></h2>
                     </header>
 
-                    <Link to={post_url} className="image fit"><img src={require("../images/pic0" + index + "-alt.jpg")} alt="" /></Link>
+                    <Link to={post_url} className="image fit"><img src={require("/src/images/pic0" + index + "-alt.jpg")} alt="" /></Link>
                     <p className="preview-content" dangerouslySetInnerHTML={{__html: post?.short_content}}></p>
                     <ul className="actions special">
                         <li><Link to={post_url} className="button">Full Story</Link></li>
@@ -62,4 +62,4 @@ function Post({ loaded_post=null, index=1, featured=false } = {}) {
     )
 }
 
-export default Post
+export default PostCard

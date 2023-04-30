@@ -65,7 +65,7 @@
 			&:not(.fixed) {
 				@include vendor('flex-direction', 'column');
 				margin-left: 0;
-				width: 100% !important;
+				width: 100%;
 
 				li {
 					@include vendor('flex-grow', '1');

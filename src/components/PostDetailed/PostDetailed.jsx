@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { usePostDataContext, usePostDataLoadContext } from '../providers/PostDataProvider';
+import { usePostDataContext, usePostDataLoadContext } from '../../providers/PostDataProvider';
 
 
 function PostDetailed() {
@@ -40,7 +40,7 @@ function PostDetailed() {
                 <header className="major">
                     <span className="date">{post?.death_date}</span>
                     <h2>{post?.title}</h2>
-                    <span className="image main"><img src={require("../images/pic0" + 1 + "-alt.jpg")} alt="" /></span>
+                    <span className="image main"><img src={require("../../images/pic0" + 1 + "-alt.jpg")} alt="" /></span>
                     <p className="content" dangerouslySetInnerHTML={{__html: post?.content}}></p>
                 </header>
             </article>
