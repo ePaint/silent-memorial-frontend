@@ -5,57 +5,77 @@ import PostDetailed from './components/PostDetailed/PostDetailed';
 import PostCardList from './components/PostCardList/PostCardList';
 import Contact from './components/Contact/Contact';
 import Copyright from './components/Copyright/Copyright';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Router, Routes, Route } from 'react-router-dom';
 import { PostDataProvider } from './providers/PostDataProvider';
 import { SessionDataProvider } from './providers/SessionDataProvider';
+import Home from './containers/Home';
+import Login from './containers/Login';
+import SignUp from './containers/SignUp';
+import Activate from './containers/Activate';
+import ResetPassword from './containers/ResetPassword';
+import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
+import Layout from './hocs/Layout';
+import { Provider } from 'react-redux';
+import store from './store';
 
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <>
-            <Intro />
-            <NavBar />
-            {/* <PostList /> */}
-        </>,
-        errorElement: <>
-            <NavBar />
-            <h2>Error</h2>
-        </>,
-    },
-    {
-        path: '/latest',
-        element: <>
-            <NavBar />
-            <PostCardList />
-        </>
-    },
-    {
-        path: '/posts/:post_id',
-        element: <>
-            <NavBar />
-            <PostDetailed />
-        </>,
-    },
-    {
-        path: '/contact',
-        element: <>
-            <NavBar />
-            <Contact />
-        </>,
-    }
-]);
+const router = createBrowserRouter([{
+    element: <Layout />,
+    errorElement: <Layout><h2>Error</h2></Layout>,
+    children: [
+        {
+            path: '/',
+            element: <>
+                {/* <Intro /> */}
+                <PostCardList />
+            </>,
+        },
+        {
+            path: '/latest',
+            element: <PostCardList />,
+        },
+        {
+            path: '/posts/:post_id',
+            element: <PostDetailed />,
+        },
+        {
+            path: '/contact',
+            element: <Contact />,
+        },
+        {
+            path: '/login',
+            element: <Login />,
+        },
+        {
+            path: '/signup',
+            element: <SignUp />,
+        },
+        {
+            path: '/reset_password',
+            element: <ResetPassword />,
+        },
+        {
+            path: '/password/reset/confirm/:uid/:token',
+            element: <ResetPasswordConfirm />,
+        },
+        {
+            path: '/activate/:uid/:token',
+            element: <Activate />,
+        },
+    ]
+}]);
 
 
 function App() {
     return (
         <>
-            <SessionDataProvider>
-                <PostDataProvider>
-                    <RouterProvider router={router} />
-                </PostDataProvider>
-            </SessionDataProvider>
-            <Copyright />
+            <Provider store={store}>
+                <SessionDataProvider>
+                    <PostDataProvider>
+                        <RouterProvider router={router} />
+                    </PostDataProvider>
+                </SessionDataProvider>
+            </Provider>
         </>
     );
 }

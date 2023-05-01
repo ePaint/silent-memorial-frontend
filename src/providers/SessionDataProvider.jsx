@@ -18,6 +18,8 @@ export function SessionDataProvider(props) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
 
+    showLoginModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto';
+
     return (
         <SessionDataContext.Provider value={{user: user, isAuthenticated: isAuthenticated, showLoginModal: showLoginModal}}>
             <SessionDataSetContext.Provider value={{setUser: setUser, setIsAuthenticated: setIsAuthenticated, setShowLoginModal: setShowLoginModal}}>

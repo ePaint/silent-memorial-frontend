@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useSessionDataContext, useSessionDataSetContext } from "../../providers/SessionDataProvider";
@@ -35,7 +35,10 @@ function NavBar() {
 
     return (
         <>
-            { showLoginModal ? <LoginModal showModal={showLoginModal} handleClose={toggleShowLoginModal} text='test' /> : null }
+            <AnimatePresence mode='wait'>
+                { showLoginModal ? <LoginModal showModal={showLoginModal} handleClose={toggleShowLoginModal} text='test' /> : null }
+            </AnimatePresence>
+            
             <header id="header">
                 <Link to="/" className="logo">Silent Memorial</Link>
             </header>

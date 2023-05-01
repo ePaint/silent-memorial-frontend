@@ -14,9 +14,9 @@ const dropIn = {
         y: '0',
         opacity: 1,
         transition: {
-            duration: 0.2,
+            duration: 0.1,
             type: 'spring',
-            damping: 25,
+            damping: 50,
             stiffness: 500,
         }
     },
@@ -38,7 +38,7 @@ function LoginModal({ showModal, handleClose, text }) {
                 exit='exit'
             >
                 <p>{text} {String(showModal)}</p>
-                <button onClick={handleClose}>Close</button>
+                <button className="close top-right" onClick={handleClose}>&#10006;</button>
             </motion.div>
         </Backdrop>
     )
