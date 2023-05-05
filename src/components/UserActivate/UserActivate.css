@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+.password-reset * {
+    all: initial;
+    all: unset;
+    all: revert;
+}
+
+
+.password-reset .container {
+    all: unset;
+    height: 100%;
+    width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.password-reset .screen {		
+	background: linear-gradient(90deg, #1e252d, #68564e);		
+	position: relative;	
+	height: 100%;
+    width: 100%;
+	box-shadow: 0px 0px 24px #68564e;
+}
+
+.password-reset .screen__content {
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+	z-index: 1;
+	position: relative;	    
+}
+
+.password-reset .form__field {
+    margin-left: 25px;
+	padding: 20px 0px;	
+	position: relative;	
+}
+
+.password-reset .form__field.password {
+	display: flex;
+}
+
+.password-reset .form__icon {
+	position: absolute;
+	top: 30px;
+    left: -30px;
+	color: #1e252d;
+    font-size: 1rem;
+}
+
+.password-reset .form__input {
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 10px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+    height: auto;
+}
+
+.password-reset .form__input.password {
+    width: 65%;
+}
+
+.password-reset .form__eye_lock {
+    color: #6a7583;
+    font-size: 1rem;
+    padding-left: 0.5rem;
+    padding-top: 0.8rem;
+    width: 1rem;
+}
+
+.password-reset .form__eye_lock:hover {
+    /* color: #18bfef; */
+    color: black;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.password-reset .form__input:active:focus,
+.password-reset .form__input:active:hover {
+	outline: none;
+	border-bottom-color: #1e252d;
+}
+
+.password-reset .form__input:active:focus,
+.password-reset .form__input:active:hover {
+	outline: none;
+	border-bottom-color: #D1D1D4;
+}
+
+.password-reset .form__submit {
+	background: #fff;
+	font-size: 14px;
+	margin-top: 30px;
+    margin-bottom: 15px;
+	padding: 16px 20px;
+	border-radius: 26px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	width: 85%;
+    min-width: 130px;
+    margin-left: 5%;
+	color: #1e252d;
+	box-shadow: 0px 2px 2px #1e252d;
+	cursor: pointer;
+	transition: .2s;
+    height: 10px;
+}
+
+.password-reset .form__submit:active,
+.password-reset .form__submit:focus,
+.password-reset .form__submit:hover {
+	border-color: #1e252d;
+	outline: none;
+    box-shadow: none;
+}
+
+.password-reset .button__icon {
+	font-size: 24px;
+	margin-left: auto;
+	color: #1e252d;
+}
+
+.password-reset .social-form {
+    position: absolute;
+    bottom: 0;
+    /* width: 30%; */
+    /* margin-left: 10px; */
+    color: white;
+    display: flex;
+    justify-content: right;
+    /* margin-left: auto; */
+    gap: 0.75rem;
+    margin: 0 15px;
+    white-space: nowrap;
+    height: 50px;
+}
+
+.password-reset .social-form .label {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* margin-top: 0.35rem; */
+}
+
+.password-reset .social-icons {
+    cursor: pointer;
+}
+
+.password-reset .social-icons > a {
+	font-size: 2rem;
+    width: 40px;
+    /* height: 100%; */
+    /* margin-bottom: 1rem; */
+}
+
+.password-reset .social-form__icon {
+    /* height: 10px; */
+    font-size: 1rem;
+	color: #fff;
+	text-decoration: none;	
+	text-shadow: 0px 0px 8px #68564e;
+}
+
+.top-left {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 2rem;
+    font-weight: 100;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    border: 0;
+    color: white;
+}
+
+.hover-scale:hover {
+    transform: scale(1.5);
+    transition: all 0.25s ease-in-out;
+}
+
+.hover-rotate:hover {
+    transform: rotate(360deg);
+    transition: all 0.5s ease-in-out;
+}
+
+.hover-scale-rotate:hover {
+    transform: scale(1.5) rotate(720deg);
+    transition: all 1s ease-in-out;
+}
+
+.hover-recolor:hover {
+    color: #DB4437;
+}
+
+.password-reset-extra {
+    padding-left: 5%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    color: #1e252d;
+    font-style: italic;
+}
+
+.password-reset-extra .password-reset-redirect {
+    cursor: pointer;
+    color: #212931;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.password-reset-extra .password-reset-redirect:hover {
+    text-decoration: underline #18bfef;
+    color: #18bfef;
+    transition: all 0.25s ease-in-out;
+}
+
+.password-reset-extra.white {
+    color: white;
+}
+
+.white .password-reset-redirect {
+    color: white;
+}

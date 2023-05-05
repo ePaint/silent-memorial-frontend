@@ -14,7 +14,7 @@
 	width: calc(100% - 4rem);
 	max-width: 72rem;
 	z-index: 2;
-    height: calc(70%, 400px, 30vh) !important;
+    height: calc(70%, 400px, 30vh);
 }
 
 #copyright input,

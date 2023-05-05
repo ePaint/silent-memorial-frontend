@@ -1,42 +1,54 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { useSessionDataContext, useSessionDataSetContext } from "../../providers/SessionDataProvider";
-import LoginModal from "../LoginModal/LoginModal";
+import { connect } from "react-redux";
+import { logout } from "../../actions/auth";
+import MyAccount from "../MyAccount/MyAccount.jsx";
 import './NavBar.css';
+import UserModal from "../UserModals/UserModal";
 
-function NavBar() {
-    const [user, setUser] = useState({});
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [showLoginModal, setShowLoginModal] = useState(false);
+function NavBar({ logout, isAuthenticated }) {
+    const [modalScreen, setModalScreen] = useState(null);
 
-    const session = useSessionDataContext();
-    const sessionSet = useSessionDataSetContext();
+    const displayLoginModal = () => setModalScreen("login");
 
-    useState(() => {
-        setUser(session.user);
-    }, [session.user]);
+    const displaySignUpModal = () => setModalScreen("signup");
 
-    useEffect(() => {
-        setIsAuthenticated(session.isAuthenticated);
-    }, [session.isAuthenticated]);
+    const hideModal = () => setModalScreen(null);
+    
+    const authLinks = () => (
+        <li className="user-panel">
+            <Link to="/my-account">My Account</Link>
+            <Link to="#!" onClick={logout}>Logout</Link>
+        </li>
+    )
 
-    useEffect(() => {
-        setShowLoginModal(session.showLoginModal);
-    }, [session.showLoginModal]);
+    console.log(modalScreen);
 
-    const toggleAuthenticated = () => {
-        sessionSet.setIsAuthenticated(!isAuthenticated);
-    }
-
-    const toggleShowLoginModal = () => {
-        sessionSet.setShowLoginModal(!showLoginModal);
-    }
+    const guestLinks = () => (
+        <li className="user-panel">
+            <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={displayLoginModal}
+            >
+                Log In
+            </motion.button>
+            <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={displaySignUpModal}
+            >
+                Sign Up
+            </motion.button>
+        </li>
+    )
 
     return (
         <>
+            
             <AnimatePresence mode='wait'>
-                { showLoginModal ? <LoginModal showModal={showLoginModal} handleClose={toggleShowLoginModal} text='test' /> : null }
+                { modalScreen ? <UserModal handleClose={hideModal} screen={modalScreen} /> : null }
             </AnimatePresence>
             
             <header id="header">
@@ -45,28 +57,17 @@ function NavBar() {
             
             <nav id="nav">
                 <ul className="links">
-                    <li className="active"><Link to="/latest">Latest Memorials</Link></li>
+                    <li><Link to="/latest">Latest Memorials</Link></li>
                     <li><Link to="/search">Search Memorials</Link></li>
-                    <li className="login">
-                        <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={toggleShowLoginModal}
-                        >
-                            Log in: {String(showLoginModal)}
-                        </motion.button>
-                    </li>
-                </ul>
-                
-                <ul className="icons">
-                    <li><a href="#" className="icon brands fa-twitter"><span className="label">Twitter</span></a></li>
-                    <li><a href="#" className="icon brands fa-facebook-f"><span className="label">Facebook</span></a></li>
-                    <li><a href="#" className="icon brands fa-instagram"><span className="label">Instagram</span></a></li>
-                    <li><a href="#" className="icon brands fa-github"><span className="label">GitHub</span></a></li>
+                    {isAuthenticated ? authLinks() : guestLinks()}
                 </ul>
             </nav>
         </>
     );
 }
 
-export default NavBar
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { logout })(NavBar);

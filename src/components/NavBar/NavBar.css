@@ -249,23 +249,27 @@
 	transform: scale(1.5);
 }
 
-#nav > ul.links > li.login {
-	transition: all .2s ease-in-out;
-	margin-left: auto;
-	margin-right: 0.75rem;
+#nav > ul.links > li.user-panel {
+    display: flex;
+    margin-left: auto;
+    white-space: nowrap;
+    color: white;
 }
 
-#nav > ul.links > li.login:hover {
+#nav > ul.links > li.user-panel > button {
+    box-shadow: none;
+    /* min-width: 125px; */
+    height: 100%;
+    white-space: nowrap;
+    font-size: 1rem;
+    color: white;
+}
+
+#nav > ul.links > li.user-panel:hover > a:hover,
+#nav > ul.links > li.user-panel > button:hover {
 	color: #18bfef;
-}
-
-#nav > ul.links > li.login > a {
-	font-size: 1rem;
-}
-
-#nav ul.links li:not(.login) a:hover {
-	color: inherit;
-	background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.3) !important;
+    transition: all 0.25s ease-in-out;
 }
 
 #nav ul.links li.active {
@@ -302,7 +306,7 @@
 		font-size: 0.75rem;
 	}
 
-	#nav > ul.links > li.login > a {
+	#nav > ul.links > li.user-panel > a {
 		width: 8.5rem;
 		margin-right: 0rem;
 	}
@@ -311,7 +315,7 @@
 		display: none;
 	}
 
-	#nav > ul.links > li.login {
+	#nav > ul.links > li.user-panel {
 		margin-right: 0rem;
 	}
 }

@@ -1,8 +1,24 @@
 import {
-    LOGIN_SUCCESS,
+    LOGOUT,
     LOGIN_FAIL,
+    LOGIN_SUCCESS,
+
+    SIGNUP_FAIL,
+    SIGNUP_SUCCESS,
+
+    ACTIVATION_FAIL,
+    ACTIVATION_SUCCESS,
+    
+    USER_LOADED_FAIL,
     USER_LOADED_SUCCESS,
-    USER_LOADED_FAIL
+    
+    AUTHENTICATED_FAIL,
+    AUTHENTICATED_SUCCESS,
+    
+    PASSWORD_RESET_FAIL,
+    PASSWORD_RESET_SUCCESS,
+    PASSWORD_RESET_CONFIRM_FAIL,
+    PASSWORD_RESET_CONFIRM_SUCCESS,    
 } from '../actions/types';
 
 const initialState = {
@@ -16,6 +32,11 @@ export default function(state = initialState, action) {
     const { type, payload } = action;
 
     switch (type) {
+        case AUTHENTICATED_SUCCESS:
+            return {
+                ...state,
+                isAuthenticated: true,
+            }
         case LOGIN_SUCCESS:
             localStorage.setItem('access', payload.access);
             return {
@@ -29,12 +50,19 @@ export default function(state = initialState, action) {
                 ...state,
                 user: payload,
             }
+        case AUTHENTICATED_FAIL:
+            return {
+                ...state,
+                isAuthenticated: false,
+            }
         case USER_LOADED_FAIL:
             return {
                 ...state,
                 user: null,
             }
+        case SIGNUP_FAIL:
         case LOGIN_FAIL:
+        case LOGOUT:
             localStorage.removeItem('access');
             localStorage.removeItem('refresh');
             return {
@@ -43,6 +71,18 @@ export default function(state = initialState, action) {
                 access: null,
                 refresh: null,
             }
+        case SIGNUP_SUCCESS:
+            return {
+                ...state,
+                isAuthenticated: false,
+            }
+        case ACTIVATION_FAIL:
+        case ACTIVATION_SUCCESS:
+        case PASSWORD_RESET_FAIL:
+        case PASSWORD_RESET_SUCCESS:
+        case PASSWORD_RESET_CONFIRM_FAIL:
+        case PASSWORD_RESET_CONFIRM_SUCCESS:
+            return state;
         default:
             return state;
     }
